@@ -1,0 +1,9 @@
+---
+
+# BEGIN
+pring:
+  jpa:
+    show-sql: true // Заодно включает показ sql-запросов
+    hibernate:
+      ddl-auto: update
+# END
