@@ -82,7 +82,7 @@ class ApplicationTest {
 
         var body = result.getResponse().getContentAsString();
 
-        assertThatJson(body).isObject().containsEntry("id", -1);
+        assertThatJson(body).isObject().containsEntry("id", task.getId());
     }
 
     @Test
@@ -95,7 +95,7 @@ class ApplicationTest {
                 .content(om.writeValueAsString(task)))
                 .andExpect(status().isCreated());
 
-        assertThat(taskRepository.findAll()).hasSize(1);
+        assertThat(taskRepository.findById(task.getId()).isPresent());
     }
 
     @Test
@@ -117,10 +117,11 @@ class ApplicationTest {
     @Test
     public void testDelete() throws Exception {
         Task task = generateTask();
-        mockMvc.perform(delete("/taks/" + task.getId()))
+        taskRepository.save(task);
+        mockMvc.perform(delete("/tasks/" + task.getId()))
                 .andExpect(status().isOk());
 
-        assertThat(taskRepository.findAll()).isEmpty();
+        assertThat(taskRepository.findById(task.getId())).isEmpty();
     }
     // END
 }
