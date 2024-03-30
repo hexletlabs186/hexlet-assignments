@@ -1,0 +1,12 @@
+---
+logging:
+  level:
+    org.hibernate.orm.jdbc.bind: trace
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  output:
+    ansi:
+      enabled: always
