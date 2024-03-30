@@ -61,6 +61,7 @@ public class BookService {
     }
 
 
+    //123
     public void delete(long id) {
         var book =  bookRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Book with id " + id + " not found"));
