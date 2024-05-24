@@ -22,7 +22,10 @@ public class App {
             swapedMap.put(v, k);
         });
 
-        storage.toMap().clear();
+        for (var k: storage.toMap().keySet()) {
+            storage.unset(k);
+        }
+
         swapedMap.forEach((k,v) -> storage.set(k,v));
     }
 }
